@@ -1,7 +1,10 @@
 # contentometre
 
 Build: cargo build
+
 Run: cargo run
+
+Then to see the result, go to http://localhost:8000
 
 Le truc pour mesurer si t'es content aujourd'hui.
 
