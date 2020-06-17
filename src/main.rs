@@ -1,10 +1,11 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use] extern crate rocket;
-#[macro_use] extern crate rocket_contrib;
 #[macro_use] extern crate serde_derive;
 
-use rocket_contrib::json::{Json, JsonValue};
+#[cfg(test)] mod tests;
+
+use rocket_contrib::json::{Json};
 
 #[derive(Serialize, Deserialize)]
 struct Hello {
@@ -18,6 +19,11 @@ fn index() -> Json<Hello> {
     })
 }
 
+fn rocket() -> rocket::Rocket {
+    rocket::ignite()
+        .mount("/", routes![index])
+}
+
 fn main() {
-    rocket::ignite().mount("/", routes![index]).launch();
+    rocket().launch();
 }
